@@ -5,6 +5,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+//Handle connection to MongoDB
+var mongoose = require('mongoose');
+var mongoDBlink = 'mongodb://localhost/chatexpress';
+mongoose.connect(mongoDBlink);
+var db = mongoose.connection;
+//Handle connection errors
+db.on('error',console.error.bind(console, 'MongoDB connection error:'));
+
 //Routes
 var index = require('./routes/index');
 var login = require('./routes/login');

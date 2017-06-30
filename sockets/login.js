@@ -1,8 +1,3 @@
-/**
- * Created by Aleksandar Babic on 7.5.17..
- * Take a look at my portfolio at https://aleksandar.alfa-ing.com
- */
-
 var usersArray = require('../app.js');
 
 exports = module.exports = function login(io) {

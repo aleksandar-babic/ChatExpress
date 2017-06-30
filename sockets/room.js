@@ -1,10 +1,5 @@
-/**
- * Created by Aleksandar Babic on 7.5.17..
- * Take a look at my portfolio at https://aleksandar.alfa-ing.com
- */
-
 var usersArray = require('../app.js');
-var messagesModel = require('../models/messages')
+var Message = require('../models/messages')
 
 
 exports = module.exports = function(io) {
@@ -18,7 +13,7 @@ exports = module.exports = function(io) {
 
         socket.on('sayHello', function (data) {
             console.log("Client is talking to us: " + data);
-            messagesModel.find({}).sort('-time').limit(15).exec(function (err,messages) {
+            Message.find({}).sort('-time').limit(15).exec(function (err, messages) {
                socket.emit('getRecentMessages',messages);
             });
         });
@@ -36,7 +31,7 @@ exports = module.exports = function(io) {
         })
         socket.on('send_message', function (data) {
             console.log(data.username+" : " + data.message)
-            var messageSave = new messagesModel({
+            var messageSave = new Message({
                 sender: data.username,
                 body: data.message
             });
