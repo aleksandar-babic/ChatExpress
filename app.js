@@ -3,7 +3,10 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var bodyParser = require('body-parser');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 
 //Handle connection to MongoDB
 var mongoose = require('mongoose');
@@ -16,6 +19,7 @@ db.on('error',console.error.bind(console, 'MongoDB connection error:'));
 //Routes
 var index = require('./routes/index');
 var login = require('./routes/login');
+var register = require('./routes/register');
 
 
 var app = express();
@@ -39,6 +43,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//Handle Express sessions
+app.use(session({
+    secret: 'secret',
+    saveUninitialized: true,
+    resave:true
+}));
+
+//Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
 //SocketIO middleware
 app.use(function(req, res, next){
     res.io = io;
@@ -47,8 +63,16 @@ app.use(function(req, res, next){
 
 var usersArray = [];
 
+//Route for all views
+app.get('*', function (req,res,next) {
+    res.locals.user = req.user || null;
+    next();
+})
+
+
 app.use('/', index);
 app.use('/login', login);
+app.use('/register',register);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -56,6 +80,7 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
