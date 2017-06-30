@@ -7,15 +7,19 @@
     "start:prod": "NODE_ENV=production node ./bin/www"
   },
   "dependencies": {
+    "bcrypt": "^1.0.2",
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
-    "express-session":"*",
     "debug": "~2.6.3",
     "express": "~4.15.2",
+    "express-session": "*",
     "jade": "~1.11.0",
+    "mongoose": "*",
     "morgan": "~1.8.1",
+    "passport": "^0.3.2",
+    "passport-http": "^0.3.0",
+    "passport-local": "^1.0.0",
     "serve-favicon": "~2.4.2",
-    "socket.io":"*",
-    "mongoose":"*"
+    "socket.io": "*"
   }
 }

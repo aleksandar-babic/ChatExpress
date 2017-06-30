@@ -39,8 +39,7 @@ $(window, document, undefined).ready(function() {
   $('#join').on('click',function (e) {
       e.preventDefault();
       socket.emit('tryLogin', {
-        "username":$('[type=text]').val(),
-        "email":$('[type=email]').val()
+          "username": $('[type=text]').val()
       },function (result) {
           if(result)
               window.location.replace("/?username=" + $('[type=text]').val());
