@@ -23,8 +23,8 @@
 
   $(document).ready(function() {
 
-    $('.ui').draggable();
-    $('.ui').resizable();
+    //$('.ui').draggable();
+    //$('.ui').resizable();
       socket.on('connect',function(){
           socket.emit('sayHello', "Hello server, I'm new here!");
           socket.emit('newUsername', getParameterByName('username'));
@@ -54,7 +54,7 @@
 
       socket.on('getRecentMessages',function (messages) {
           for (i = messages.length-1; i >= 0; --i) {
-              $(".messages").append("<li class=\"friend-with-a-SVAGina\"><div class=\"head\"><span class=\"name\">"
+              $(".messages").append("<li class='msg-foreign'><div class=\"head\"><span class=\"name\">"
                   +messages[i].sender+"</span><span class=\"time\"> wrote "
                   + moment(messages[i].time).fromNow() + "</div><div class=\"message\">" + messages[i].body + "</div></li>");
           }
@@ -62,7 +62,7 @@
       })
       socket.on('responseMessage',function (data) {
             if(data.message != previousMessage) {
-                $(".messages").append("<li class=\"friend-with-a-SVAGina\"><div class=\"head\"><span class=\"name\">"+data.username+"</span><span class=\"time\"> wrote " + moment(new Date()).fromNow() + "</div><div class=\"message\">" + data.message + "</div></li>");
+                $(".messages").append("<li class='msg-foreign'><div class=\"head\"><span class=\"name\">"+data.username+"</span><span class=\"time\"> wrote " + moment(new Date()).fromNow() + "</div><div class=\"message\">" + data.message + "</div></li>");
                 scrollDown();
                 new Audio('./notify/newMessage.mp3').play()
             }

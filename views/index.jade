@@ -2,9 +2,9 @@ doctype html
 html
   head
     meta(charset='UTF-8')
-    title ChatIO
-    link(rel='stylesheet', href='/stylesheets/room/normalize.css')
-    link(rel='stylesheet', href='/stylesheets/room/style.css')
+    title ChatExpress
+    link(rel='stylesheet', href='/css/room/normalize.css')
+    link(rel='stylesheet', href='/css/room/style.css')
     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css')
   body
     .ui
@@ -19,18 +19,16 @@ html
             .count
               | There are
               span.userCount
-              |  people connected to ChatIO.
+              |  people connected to ChatExpress.
           i.fa.fa-star
         ul.messages
         .write-form
           textarea#texxt(placeholder='Type your message', name='e', rows='2')
-          i.fa.fa-picture-o
-          i.fa.fa-file-o
           span.send Send
     script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/nicescroll/3.5.4/jquery.nicescroll.js')
-    script(src='/javascripts/room/jquery-ui.min.js')
+    script(src='/js/room/jquery-ui.min.js')
     script(src='/socket.io/socket.io.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js')
-    script(src='/javascripts/room/moment.js')
-    script(src='/javascripts/room/index.js')
+    script(src='/js/room/moment.js')
+    script(src='/js/room/index.js')
