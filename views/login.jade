@@ -1,0 +1,35 @@
+html
+    head
+        title Login - ChatIO
+        meta(charset='utf-8')
+        meta(http-equiv='Content-type', content='text/html; charset=utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        link(rel='stylesheet', type='text/css', href='/stylesheets/login/style.css')
+    body
+        hgroup
+            h1 Welcome to ChatIO
+            h3 Enter your username and e-mail to get started.
+        form
+            .group
+                input(type='text',name='name')
+                span.highlight
+                span.bar
+                label Name
+            .group
+                input(type='email',name='email')
+                span.highlight
+                span.bar
+                label Email
+            button.button.buttonBlue(type='button', id="join")
+                | Join room
+                .ripples.buttonRipples
+                    span.ripplesCircle
+        footer
+            a(href='https://socket.io/', target='_blank')
+                img(src='/images/socket_io.png')
+            p
+                | Proudly powered by
+                a(href='https://socket.io/', target='_blank') SocketIO
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js')
+        script(src='/javascripts/login/index.js')
+        script(src='/socket.io/socket.io.js')
