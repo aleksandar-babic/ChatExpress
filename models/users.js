@@ -33,7 +33,7 @@ module.exports.getUserById = function (id, callback) {
 
 module.exports.createUser = function (newUser, callback) {
     bcrypt.hash(newUser.password, 10, function (err, hash) {
-        if (err) throw err;
+        if (err) return callback(err);
         // Set hashed password
         newUser.password = hash;
         newUser.save(callback);

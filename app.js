@@ -22,6 +22,42 @@ var login = require('./routes/login');
 var register = require('./routes/register');
 
 
+//Passport serialization,deserialization, authentication validator
+var User = require('./models/users');
+passport.use(new LocalStrategy(function (username,password,done) {
+    console.log('got into strategy');
+    User.getUserByUsername(username, function (err, user) {
+        if (err) throw err;
+        if (!user) {
+            console.log('Unknown User');
+            return done(null, false, {message: 'Unknown user'});
+        }
+        User.comparePassword(password, user.password, function (err, isMatch) {
+            if (err) throw err;
+            if (isMatch) {
+                return done(null, user);
+            } else {
+                console.log('Invalid Password');
+                return done(null, false, {message: 'Invalid Password'})
+            }
+        });
+    });
+}));
+
+// used to serialize the user for the session
+passport.serializeUser(function(user, done) {
+    done(null, user.id);
+
+});
+
+// used to deserialize the user
+passport.deserializeUser(function(id, done) {
+    User.getUserById(id, function(err, user) {
+        done(err, user);
+    });
+});
+
+
 var app = express();
 
 

@@ -9,18 +9,18 @@ html
         hgroup
             h1 Welcome to ChatExpress
             h3 Enter your username and password to get started.
-        form
+        form#loginForm(method='POST', action='/login')
             .group
-                input(type='text',name='name')
+                input(type='text',name='username',id='username')
                 span.highlight
                 span.bar
                 label Username
             .group
-                input(type='password',name='password')
+                input(type='password',name='password', id='password')
                 span.highlight
                 span.bar
                 label Password
-            button.button.buttonBlue(type='button', id="join")
+            button.button.buttonBlue(type='submit', id="join")
                 | Join room
                 .ripples.buttonRipples
                     span.ripplesCircle

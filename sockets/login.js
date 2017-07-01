@@ -6,7 +6,6 @@ exports = module.exports = function login(io) {
                 if(!validateUserName(data.username))
                     callback(false);
                 else{
-                    usersArray.usersArray.push(data.username);
                     socket.username = data.username;
                     sendUsernames();
                     callback(true);

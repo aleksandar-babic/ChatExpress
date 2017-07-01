@@ -11,16 +11,21 @@ html
             h3 Let's register. We only need your new username and password.
         form(method='POST', action='/register')
             .group
-                input(type='text',name='name')
+                input(type='text',name='username',required='')
                 span.highlight
                 span.bar
                 label Username
             .group
-                input(type='password',name='password')
+                input(type='password',name='password',required='')
                 span.highlight
                 span.bar
                 label Password
-            button.button.buttonBlue(type='button', id="join")
+            .group
+                input(type='password',name='password2',required='')
+                span.highlight
+                span.bar
+                label Verify password
+            button.button.buttonBlue(type='submit', id="join")
                 | Register
                 .ripples.buttonRipples
                     span.ripplesCircle

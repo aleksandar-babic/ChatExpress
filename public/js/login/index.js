@@ -34,16 +34,29 @@ $(window, document, undefined).ready(function() {
   	$(this).removeClass('is-active');
   });
 
-
-
-  $('#join').on('click',function (e) {
+  $('#loginForm').on('submit',function (e) {
       e.preventDefault();
-      socket.emit('tryLogin', {
-          "username": $('[type=text]').val()
-      },function (result) {
-          if(result)
-              window.location.replace("/?username=" + $('[type=text]').val());
-      });
-  })
+      /*$.ajax({
+          method: "POST",
+          url: "/login",
+          data: { username: $('#username').val() , password: $('#password').val()},
+          statusCode: {
+              401: function(data) {
+                  console.log(data);
+              },
+              200: function () {
+                  socket.emit('tryLogin', {
+                      "username": $('[type=text]').val()
+                  },function (result) {
+                      if(result) {
+                          console.log('RESULT' + result);
+                          window.location.href = 'localhost:3000';
+                      }
+                  });
+              }
+          }
+      });*/
+      this.submit();
+  });
 
 });
