@@ -69,8 +69,10 @@
       });
       
       socket.on('userLeft',function (data) {
-          var byeMessage = "User " + data + " has left the room.";
-          toastr.error(byeMessage,'Goodbye');
+          if(getParameterByName('username') != data) {
+              var byeMessage = "User " + data + " has left the room.";
+              toastr.error(byeMessage, 'Goodbye');
+          }
       })
     var previousMessage;
     var innerText = $.trim($("#texxt").val());
