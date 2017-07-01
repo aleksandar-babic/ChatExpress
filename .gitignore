@@ -58,4 +58,4 @@ typings/
 .env
 
 # Idea WebStorm project file
-.idea
+.idea/
