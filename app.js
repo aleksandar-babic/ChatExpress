@@ -25,7 +25,6 @@ var register = require('./routes/register');
 //Passport serialization,deserialization, authentication validator
 var User = require('./models/users');
 passport.use(new LocalStrategy(function (username,password,done) {
-    console.log('got into strategy');
     User.getUserByUsername(username, function (err, user) {
         if (err) throw err;
         if (!user) {

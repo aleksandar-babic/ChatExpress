@@ -11,12 +11,12 @@ html
             h3 Enter your username and password to get started.
         form#loginForm(method='POST', action='/login')
             .group
-                input(type='text',name='username',id='username')
+                input(type='text',name='username',id='username',required='')
                 span.highlight
                 span.bar
                 label Username
             .group
-                input(type='password',name='password', id='password')
+                input(type='password',name='password', id='password',required='')
                 span.highlight
                 span.bar
                 label Password
