@@ -62,9 +62,14 @@
       })
       socket.on('responseMessage',function (data) {
             if(data.message != previousMessage) {
-                $(".messages").append("<li class='msg-foreign'><div class=\"head\"><span class=\"name\">"+data.username+"</span><span class=\"time\"> wrote " + moment(new Date()).fromNow() + "</div><div class=\"message\">" + data.message + "</div></li>");
-                scrollDown();
-                new Audio('./notify/newMessage.mp3').play()
+                if(data.username != getParameterByName('username')) {
+                    $(".messages").append("<li class='msg-foreign'><div class=\"head\"><span class=\"name\">" + data.username + "</span><span class=\"time\"> wrote " + moment(new Date()).fromNow() + "</div><div class=\"message\">" + data.message + "</div></li>");
+                    scrollDown();
+                    new Audio('./notify/newMessage.mp3').play()
+                }else {
+                    $(".messages").append("<li class=\"i\"><div class=\"head\"><span class=\"time\">" + moment(new Date()).fromNow() + "</div><div class=\"message\">" + data.message + "</div></li>");
+                    scrollDown();
+                }
             }
       });
       
