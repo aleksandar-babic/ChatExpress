@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 
-router.get('/', function(req, res, next) {
+router.get('/', redirectIfLoggedIn, function (req, res, next) {
     res.render('login');
 });
 
@@ -34,5 +34,11 @@ router.get('/destroy',function (req,res,next) {
     req.logout();
     res.redirect('/login');
 });
+
+function redirectIfLoggedIn(req, res, next) {
+    if (req.isAuthenticated())
+        return res.redirect('/');
+    next();
+}
 
 module.exports = router;

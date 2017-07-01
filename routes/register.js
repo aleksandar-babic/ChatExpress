@@ -4,7 +4,7 @@ var router = express.Router();
 var User = require('../models/users');
 
 
-router.get('/', function(req, res, next) {
+router.get('/', redirectIfLoggedIn, function (req, res, next) {
     res.render('register');
 });
 
@@ -29,4 +29,11 @@ router.post('/',function (req,res) {
        return res.send(200,{ success : true, message : 'Successfully registrated.' });
    });
 });
+
+function redirectIfLoggedIn(req, res, next) {
+    if (req.isAuthenticated())
+        return res.redirect('/');
+    next();
+}
+
 module.exports = router;
