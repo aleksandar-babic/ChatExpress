@@ -22,10 +22,14 @@ router.post('/', function (req,res,next) {
                 return next(err);
             }
             console.log("Authentification successful");
-            usersArray.usersArray.push(req.body.username);
-            res.redirect('/?username=' + req.body.username);
+            res.status(200).send('Logged in!');
         });
     })(req, res, next);
+});
+
+router.get('/destroy',function (req,res,next) {
+    req.logout();
+    res.redirect('/login');
 });
 
 module.exports = router;

@@ -36,27 +36,32 @@ $(window, document, undefined).ready(function() {
 
   $('#loginForm').on('submit',function (e) {
       e.preventDefault();
-      /*$.ajax({
+      $.ajax({
           method: "POST",
           url: "/login",
           data: { username: $('#username').val() , password: $('#password').val()},
           statusCode: {
-              401: function(data) {
-                  console.log(data);
+              401: function() {
+                  toastr.error('Please double check your username and password.', 'Login failed');
+              },
+              302: function () {
+                  /*socket.emit('tryLogin', {
+                      "username": $('#username').val()
+                  },function (result) {
+                          console.log('RESULT' + result);
+                          window.location.replace = 'localhost:3000';
+                  });*/
               },
               200: function () {
-                  socket.emit('tryLogin', {
-                      "username": $('[type=text]').val()
-                  },function (result) {
-                      if(result) {
-                          console.log('RESULT' + result);
-                          window.location.href = 'localhost:3000';
-                      }
-                  });
+                socket.emit('tryLogin', {
+                 "username": $('#username').val()
+                 },function (result) {
+                    window.location.href = 'http://localhost:3000';
+                 });
               }
           }
-      });*/
-      this.submit();
+      });
+      //this.submit();
   });
 
 });

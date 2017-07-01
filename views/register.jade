@@ -8,7 +8,9 @@ html
     body
         hgroup
             h1 Welcome to ChatExpress
-            h3 Let's register. We only need your new username and password.
+            h3 Let's get you registrated. We only need your new username and password.
+            h4
+                a(href='/login') Already have account? Click here
         form(method='POST', action='/register')
             .group
                 input(type='text',name='username',required='')

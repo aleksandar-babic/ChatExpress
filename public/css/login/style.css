@@ -20,10 +20,14 @@ h1, h3 { font-weight: 300; }
 h1 { color: #636363; }
 
 h3 { color: #4a89dc; }
+h4 > a{ color: #4a89dc; }
+a, a:hover, a:active, a:visited, a:focus {
+	text-decoration:none;
+}
 
 form {
 	width: 380px;
-	margin: 4em auto;
+	margin: 2em auto;
 	padding: 3em 2em 0em 2em;
 	background: #fafafa;
 	border: 1px solid #ebebeb;

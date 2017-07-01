@@ -9,7 +9,10 @@ html
   body
     .ui
       .left-menu
-        menu.list-friends
+        .dropdown
+          #profileDropdown.dropdown-content
+            a(href='/login/destroy') Logout
+          menu.list-friends
       .chat
         .top
           .avatar

@@ -6,10 +6,13 @@ exports = module.exports = function(io) {
     io.sockets.on('connection', function (socket) {
 
         socket.on('newUsername',function (data) {
+            if(!(usersArray.usersArray.indexOf(data) > -1))
+                usersArray.usersArray.push(data);
             io.sockets.emit('notifyNewUser', data);
+            io.sockets.emit('usernameList', usersArray.usersArray);
         })
 
-        sendUsernames();
+        //sendUsernames();
 
         socket.on('sayHello', function (data) {
             console.log("Client is talking to us: " + data);

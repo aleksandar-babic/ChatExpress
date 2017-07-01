@@ -23,8 +23,6 @@
 
   $(document).ready(function() {
 
-    //$('.ui').draggable();
-    //$('.ui').resizable();
       socket.on('connect',function(){
           socket.emit('sayHello', "Hello server, I'm new here!");
           socket.emit('newUsername', getParameterByName('username'));
@@ -33,7 +31,6 @@
           if(data != getParameterByName('username')){
               var welcomeMessage = "User " + data + " has joined room."
               toastr.success(welcomeMessage,'Hi there');
-              console.log(getParameterByName('username'))
           }
       })
       socket.on('userCount', function (data) {
@@ -42,7 +39,7 @@
 
       socket.on('usernameList',function (usernames) {
           $('.list-friends').html('');
-          var prepareString = "<li><img src='/images/avatar-empty.png'/ width=45px height=45px><div class='info'><div class='user'>" + getParameterByName('username')+ " (Me) </div><div class='status on'>online</div></div></li>";
+          var prepareString = "<li><img src='/images/avatar-empty.png'/ width=45px height=45px class='dropbtn' onclick='document.getElementById(\"profileDropdown\").classList.toggle(\"show\");'><div class='info'><div class='user'>" + getParameterByName('username')+ " (Me) </div><div class='status on'>online</div></div></li>";
           $('.list-friends').append(prepareString);
           for (i = 0; i < usernames.length; ++i){
               if(usernames[i] != getParameterByName('username')) {
@@ -95,6 +92,22 @@
         return false;
       }
     });
+
+      // Close the dropdown menu if the user clicks outside of it
+      window.onclick = function(event) {
+          if (!event.target.matches('.dropbtn')) {
+
+              var dropdowns = document.getElementsByClassName("dropdown-content");
+              var i;
+              for (i = 0; i < dropdowns.length; i++) {
+                  var openDropdown = dropdowns[i];
+                  if (openDropdown.classList.contains('show')) {
+                      openDropdown.classList.remove('show');
+                  }
+              }
+          }
+      }
+
     return $(".send").click(function() {
         var innerText = $.trim($("#texxt").val());
         if (innerText !== "") {
@@ -108,6 +121,9 @@
     $( window ).unload(function() {
         socket.emit('leaving',getParameterByName('username'));
     });
+
+
+
 }).call(this);
 
 function getParameterByName(name) {
