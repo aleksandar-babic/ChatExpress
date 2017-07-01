@@ -5,25 +5,26 @@ html
         meta(http-equiv='Content-type', content='text/html; charset=utf-8')
         meta(name='viewport', content='width=device-width, initial-scale=1')
         link(rel='stylesheet', type='text/css', href='/css/login/style.css')
+        link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css')
     body
         hgroup
             h1 Welcome to ChatExpress
             h3 Let's get you registrated. We only need your new username and password.
             h4
                 a(href='/login') Already have account? Click here
-        form(method='POST', action='/register')
+        form#registerForm(method='POST', action='/register')
             .group
-                input(type='text',name='username',required='')
+                input#username(type='text',name='username',required='',)
                 span.highlight
                 span.bar
                 label Username
             .group
-                input(type='password',name='password',required='')
+                input#password(type='password',name='password',required='')
                 span.highlight
                 span.bar
                 label Password
             .group
-                input(type='password',name='password2',required='')
+                input#password2(type='password',name='password2',required='')
                 span.highlight
                 span.bar
                 label Verify password
@@ -39,3 +40,5 @@ html
 
         script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js')
         script(src='/socket.io/socket.io.js')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js')
+        script(src='/js/register/index.js')

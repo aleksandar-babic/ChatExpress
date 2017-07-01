@@ -44,24 +44,15 @@ $(window, document, undefined).ready(function() {
               401: function() {
                   toastr.error('Please double check your username and password.', 'Login failed');
               },
-              302: function () {
-                  /*socket.emit('tryLogin', {
-                      "username": $('#username').val()
-                  },function (result) {
-                          console.log('RESULT' + result);
-                          window.location.replace = 'localhost:3000';
-                  });*/
-              },
               200: function () {
                 socket.emit('tryLogin', {
                  "username": $('#username').val()
                  },function (result) {
-                    window.location.href = 'http://localhost:3000';
+                    window.location.href = document.location.origin;
                  });
               }
           }
       });
-      //this.submit();
   });
 
 });

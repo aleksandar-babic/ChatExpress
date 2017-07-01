@@ -2,27 +2,30 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 
-var usersArray = require('../app.js');
-
-/* GET login page. */
 router.get('/', function(req, res, next) {
     res.render('login');
 });
 
 router.post('/', function (req,res,next) {
+
+    if(!req.body.username)
+        res.status(500).send('Username is required');
+    if(!req.body.password)
+        res.status(500).send('Password is required');
+
     passport.authenticate('local', function(err, user, info) {
         if (err) {
             return next(err); // will generate a 500 error
         }
         if (! user) {
-            return res.send(401,{ success : false, message : 'authentication failed' });
+            return res.send(401,{ success : false, message : 'Authentication failed' });
         }
         req.login(user, function(err){
             if(err){
                 return next(err);
             }
             console.log("Authentification successful");
-            res.status(200).send('Logged in!');
+            return res.send(200,{ success : true, message : 'Successfully logged in' });
         });
     })(req, res, next);
 });

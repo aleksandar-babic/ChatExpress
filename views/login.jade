@@ -14,12 +14,12 @@ html
                 a(href='/register') Need an account? Click here
         form#loginForm(method='POST', action='/login')
             .group
-                input(type='text',name='username',id='username',required='')
+                input#username(type='text',name='username',required='')
                 span.highlight
                 span.bar
                 label Username
             .group
-                input(type='password',name='password', id='password',required='')
+                input#password(type='password',name='password',required='')
                 span.highlight
                 span.bar
                 label Password
