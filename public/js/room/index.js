@@ -53,9 +53,16 @@
 
           socket.on('getRecentMessages',function (messages) {
               for (i = messages.length-1; i >= 0; --i) {
-                  $(".messages").append("<li class='msg-foreign'><div class=\"head\"><span class=\"name\">"
-                      +messages[i].sender+"</span><span class=\"time\"> wrote "
-                      + moment(messages[i].time).fromNow() + "</div><div class=\"message\">" + messages[i].body + "</div></li>");
+                  if(messages[i].sender != getParameterByName('username')) {
+                      $(".messages").append("<li class='msg-foreign'><div class=\"head\"><span class=\"name\">"
+                          + messages[i].sender + "</span><span class=\"time\"> wrote "
+                          + moment(messages[i].time).fromNow() + "</div><div class=\"message\">" + messages[i].body + "</div></li>");
+                  }else {
+                      $(".messages").append("<li class=\"i\"><div class=\"head\"><span class=\"time\">"
+                          + moment(messages[i].time).fromNow() + "" +
+                          "</div><div class=\"message\">" + messages[i].body +
+                          "</div></li>");
+                  }
               }
               scrollDown();
           });
