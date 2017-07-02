@@ -1,5 +1,5 @@
 # Chat Express
-Chat Express is full stack java script chat app. It uses SocketIO to make chat realtime.
+Chat Express is full stack javascript chat app. It uses SocketIO to make chat realtime.
 
 # DEMO
 You can check out demo of app on [This link](https://chatexpress-io.herokuapp.com)
