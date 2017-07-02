@@ -3,7 +3,7 @@ Chat Express is full stack java script chat app. It uses SocketIO to make chat r
 
 # DEMO
 You can check out demo of app on [This link](https://chatexpress-io.herokuapp.com)
-IMPORTANT: App server is sleeping when idle so first request to demo might take few seconds.
+###### IMPORTANT: App server is sleeping when idle so first request to demo might take few seconds.
 
 If you don't want to make new user account you can use these :
 - Username: aleksandar, Password: 123
