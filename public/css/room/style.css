@@ -69,6 +69,7 @@ body {
   color: #fff;
 }
 .ui .left-menu {
+  min-width: 135px;
   width: 12%;
   box-sizing: content-box;
   padding-right: 1%;
