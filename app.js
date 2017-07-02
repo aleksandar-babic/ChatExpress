@@ -10,7 +10,7 @@ var LocalStrategy = require('passport-local').Strategy;
 
 //Handle connection to MongoDB
 var mongoose = require('mongoose');
-var mongoDBlink = 'mongodb://localhost/chatexpress';
+var mongoDBlink = 'mongodb://admin:Mx18WkqMT73c@ds147072.mlab.com:47072/chatexpress';
 mongoose.connect(mongoDBlink);
 var db = mongoose.connection;
 //Handle connection errors
