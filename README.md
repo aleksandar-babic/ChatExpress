@@ -2,15 +2,12 @@
 Chat Express is full stack java script chat app. It uses SocketIO to make chat realtime.
 
 # DEMO
-You can check out demo of app on chatexpress-io.herokuapp.com
+You can check out demo of app on [This link](https://chatexpress-io.herokuapp.com)
 IMPORTANT: App server is sleeping when idle so first request to demo might take few seconds.
 
 If you don't want to make new user account you can use these :
-Username: aleksandar
-Password: 123
-
-Username: test
-Password: 123
+- Username: aleksandar, Password: 123
+- Username: test, Password: 123
 
 ### Installation
 Chat Express requires [Node.js](https://nodejs.org/), [MongoDB](https://www.mongodb.com/) and [NPM](https://www.npmjs.com/) to run.
