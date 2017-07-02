@@ -2,10 +2,12 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 
+//Handles get requests to render login view
 router.get('/', redirectIfLoggedIn, function (req, res, next) {
     res.render('login');
 });
 
+//Handles user login post request
 router.post('/', function (req,res,next) {
 
     if(!req.body.username)
@@ -30,11 +32,13 @@ router.post('/', function (req,res,next) {
     })(req, res, next);
 });
 
+//Logs user out of system
 router.get('/destroy',function (req,res,next) {
     req.logout();
     res.redirect('/login');
 });
 
+//Helper that redirects user to home page if he sent request to login but is already logged in
 function redirectIfLoggedIn(req, res, next) {
     if (req.isAuthenticated())
         return res.redirect('/');

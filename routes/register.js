@@ -3,11 +3,12 @@ var router = express.Router();
 
 var User = require('../models/users');
 
-
+//Renders registration view
 router.get('/', redirectIfLoggedIn, function (req, res, next) {
     res.render('register');
 });
 
+//Handles user registration
 router.post('/',function (req,res) {
    if(!req.body.username)
        return res.send(500,{ success : false, message : 'Username is required.' });
@@ -22,14 +23,19 @@ router.post('/',function (req,res) {
        if(user)
            return res.send(500,{ success : false, message : 'User with that username already exists.' });
 
-       User.createUser(new User({username:req.body.username,password:req.body.password},function (err) {
+       var user = new User({username:req.body.username,password:req.body.password});
+       User.createUser(user,function (err) {
            if(err)
                return res.send(500,{ success : false, message : 'Error while creating user.' });
-       }));
-       return res.send(200,{ success : true, message : 'Successfully registrated.' });
+           req.login(user,function (err) {
+               if(err) return next(err);
+               return res.send(200,{ success : true, message : 'Successfully registrated and logged in.' });
+           });
+       });
    });
 });
 
+//Helper that redirects user to home page if he sent request to register but is already logged in
 function redirectIfLoggedIn(req, res, next) {
     if (req.isAuthenticated())
         return res.redirect('/');

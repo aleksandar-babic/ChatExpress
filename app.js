@@ -22,7 +22,7 @@ var login = require('./routes/login');
 var register = require('./routes/register');
 
 
-//Passport serialization,deserialization, authentication validator
+//Passport serialization,deserialization, Local strategy for login
 var User = require('./models/users');
 passport.use(new LocalStrategy(function (username,password,done) {
     User.getUserByUsername(username, function (err, user) {
@@ -96,14 +96,14 @@ app.use(function(req, res, next){
     next();
 });
 
+//Global active users array
 var usersArray = [];
 
-//Route for all views
+//Add whole user from request to locals so it can be used app wide
 app.get('*', function (req,res,next) {
     res.locals.user = req.user || null;
     next();
-})
-
+});
 
 app.use('/', index);
 app.use('/login', login);
